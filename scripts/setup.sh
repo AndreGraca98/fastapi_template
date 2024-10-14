@@ -10,7 +10,7 @@ fi
 
 echo -e "\033[1;32m[INFO]\033[0m Setting up the project..."
 # Add the required dependencies
-pdm add $PDM_OPTIONS fastapi uvicorn environs
+pdm add $PDM_OPTIONS fastapi uvicorn environs 
 pdm add $PDM_OPTIONS -d pre-commit
 
 read -p "Do you want to add support for a database? [y/N] " db_support
@@ -40,10 +40,3 @@ if [[ $notebook_support =~ ^[Yy]$ ]]; then
 else
     echo -e "\033[1;33m[WARNING]\033[0m Skipping jupyter notebook support..."
 fi
-
-# Install the dependencies
-pdm sync -G:all
-
-# Install pre-commit hooks
-pdm run pre-commit install
-pdm run pre-commit install --hook-type pre-push

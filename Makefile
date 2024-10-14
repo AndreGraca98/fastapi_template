@@ -1,14 +1,21 @@
-.PHONY: help setup env up down watch lint test clean deep-clean
+.PHONY: help env setup install install-pre-commit-hooks up down watch lint test clean deep-clean
 .DEFAULT_GOAL := help
 .SILENT:
 
-setup: env ## Setup the project
-	@echo "Setting up the project..."
-	./scripts/setup.sh
-
 env: ## Create the environment file
-	@echo "Creating the environment file..."
 	test -f .env || cp .env.template .env
+
+setup: env ## Setup the project
+	chmod +x scripts/setup.sh && ./scripts/setup.sh
+	$(MAKE) install
+
+install: ## Install the dependencies
+	pdm sync -G:all
+	$(MAKE) install-pre-commit-hooks
+
+install-pre-commit-hooks: ## Install pre-commit hooks
+	pdm run pre-commit install
+	pdm run pre-commit install --hook-type pre-push
 
 up: env ## Start the container
 	@echo "Starting the container..."

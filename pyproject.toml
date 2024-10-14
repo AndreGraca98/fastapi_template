@@ -1,12 +1,11 @@
 [project]
-name = "fastapi-template"
+name = "fastapi_template"
 version = "0.1.0"
 description = "FastAPI template for PDM package"
 authors = [
     {name = "André Graça", email = "andrepgraca+fastapitemplate@gmail.com"},
 ]
 dependencies = [
-
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
@@ -19,11 +18,14 @@ distribution = false
 
 
 [tool.pdm.scripts]
-lint = {composite=["ruff check . --fix", "ruff format ."], help="Run the linter"}
+lint = {composite=[
+    "ruff check . --fix",
+    "ruff format .",
+], help="Run the linter"}
 test = {cmd="pytest -vvv", help="Run the tests"}
 cov = {composite=[
-  "coverage run --rcfile setup.cfg -m pytest -qqq",
-  "coverage html --rcfile setup.cfg",
-  "coverage xml --rcfile setup.cfg",
-  "coverage report --rcfile setup.cfg"
-  ], help="Run the coverage"}
+    "coverage run --rcfile setup.cfg -m pytest -qqq",
+    "coverage html --rcfile setup.cfg",
+    "coverage xml --rcfile setup.cfg",
+    "coverage report --rcfile setup.cfg",
+], help="Run the coverage"}
