@@ -4,10 +4,6 @@
 
 ```bash
 pdm init https://github.com/AndreGraca98/fastapi_template.git
-```
-
-## Setup
-
-```bash
+# Initialize a new repository if using pre-commit
 make setup
 ```
